@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="/stylesheets/admin/a_profile.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+		<title>Admin Profile</title>
+	</head>
+	<body>
+		<header class="header">
+			<a href="/admin/a_main.html" id="logo">Home</a>
+			<a href="/logout">logout</a>
+		</header>
+		<main id="mainblock">
+			<div class="main">
+				<p class="txt">If you wish to change your username: </p>
+				<input id="input_name" class="inp norm" type="text" placeholder="username">
+				<button id="alterName" class="button">Change name</button>
+				<div id="fail-section1"></div>
+			</div>
+			<div class="main">
+				<p class="txt">If you wish to change your password: </p>
+				<input type="password" id="input_password" class="inp norm" type="text" placeholder="New password">
+				<button id="alterpassword" class="button">Change password</button>
+				<div id="fail-section2"></div>
+			</div>
+		</main>
+		<script src="/javascripts/admin/a_profile.js"></script>
+	</body>
+</html>

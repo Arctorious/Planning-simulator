@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="/stylesheets/login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    </head>
+    <body>
+        <header class="header">
+            <a href="/index.html" id="logo">Home</a>
+            <input type="text" placeholder="Insert invitation code here" id="search">
+            <a href="/login.html">
+                <button id="login">Login</button>
+            </a>
+        </header>
+        <div class="center" id="log-div">
+                <p class="title">Planning simulator: 2022++</p>
+            <main id="log-m">
+                <div class="center" >
+                    <input class="input-t left" id="inp-email" placeholder="Email address">
+                    <input type="password" class="input-t left" id="inp-pass" placeholder="Password">
+                </div>
+                <div id="fail-section">
+                </div>
+                <button class="input-b" id="login-l" type="button">Login</button>
+                <div id="g_login">
+                    <p id="g_text">Or you can:</p>
+                    <input id="google" type="image" src="/images/btn_google_signin_dark_normal_web@2x.png">
+                </div>
+                <hr>
+                <p class="log-text">Not a member?</p>
+                <a href="/register.html">
+                <button class="input-b" id="register-l" type="button">Register Now</button>
+                </a>
+            </main>
+                <p class="small"><i>plan, check and finalise your events</i></p>
+        </div>
+        <script src="/javascripts/login.js"></script>
+    </body>
+</html>

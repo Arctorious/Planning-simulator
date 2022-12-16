@@ -1,0 +1,164 @@
+body {
+    font-family: 'Roboto Condensed';
+    margin:0px;
+    padding: 0px;
+}
+.center {
+    margin: auto;
+    text-align: center;
+    display: inline-block;
+    width: 96%;
+}
+#mainbox {
+    width: 30%;
+    max-height: 60%;
+    display: block;
+    background-color: #8faadc;
+    border: 0.15vw solid black;
+}
+#f_div {
+    border-top: 0.15vw solid black;
+    margin-top: 2%;
+}
+.mainInfo {
+    width: 91%;
+    background-color: #e7e6e6;
+    margin-top: 0px;
+    display: inline-block;
+    vertical-align: top;
+    border-left: 0.15vw solid black;
+    border-right: 0.15vw solid black;
+    border-bottom: 0.15vw solid black;
+}
+.txtArea {
+    font-size: 1.1vw;
+    float: left;
+    margin: 1% 0px 1% 1%;
+    text-align: left;
+    font-weight: bold;
+}
+.usertxt {
+    font-size: 1.1vw;
+    float: left;
+    margin: 1%;
+}
+.avatxt {
+    float: left;
+    color: white;
+    margin: 2% 1% 0 1%;
+    font-size: 1.6vw;
+    font-weight: bold;
+}
+.input-time {
+    font-size: 0.9vw;
+    width: 19%;
+    padding: 1%;
+    margin: 2% 1% 0 1%;
+}
+.input-name {
+    font-size: 1vw;
+    width: 42%;
+    padding: 1%;
+    margin: 2% 1.3% 0 1.3%;
+}
+#API {
+    display:block;
+    margin: 2.3% 1.3% 0 1.3%;
+    width: 62%;
+    height: 3vh;
+    background-color: blue;
+}
+.but {
+    border: 0.15vw solid darkblue;
+    border-radius: 5px;
+    background-color: #b4c7e7;
+    margin: 2.3% 1.3% 2.3% 1.3%;
+    width: 44%;
+    font-size: 1.3vw;
+    cursor: pointer;
+}
+.left {
+    float: left;
+}
+.header {
+    overflow: hidden;
+    background-color: #4472C4;
+    margin-bottom: 3%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+}
+#logo {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0.3%;
+    margin-left: 2%;
+    padding: 0.3%;
+    font-size: 2vw;
+    font-weight: bold;
+    width: 6%;
+}
+#search {
+    float: left;
+    color: black;
+    text-align: left;
+    padding: 0.7%;
+    margin-top: 0.3%;
+    border: 0.05vw solid black;
+    width: 20%;
+    font-size: 1.2vw;
+    font-weight: 700;
+}
+#login {
+    float: right;
+    color: black;
+    text-align: center;
+    margin-top: 0.3%;
+    margin-right: 2%;
+    border: 0.1vw solid black;
+    font-size: 2vw;
+    border-radius: 5px;
+    padding: 0.2%;
+    font-weight: bold;
+    background-color: #C5E0B4;
+    width: 7%;
+}
+.header #logo:hover {
+    background-color: white;
+    color: black;
+}
+.lighter {
+    filter: brightness(120%);
+}
+.darker {
+    filter: brightness(85%);
+}
+.fail-message {
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.success-message {
+    color: #228B22;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+#google {
+    width: 64%;
+}
+#g_login {
+    margin: auto;
+    width: 65%;
+}
+#user {
+    float: right;
+    color: lightgray;
+    margin-top: 0.3%;
+    margin-right: 2%;
+    font-size: 2vw;
+    padding: 0.2%;
+    font-weight: bold;
+}

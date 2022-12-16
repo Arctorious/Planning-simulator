@@ -1,0 +1,114 @@
+#log-div {
+    width: 30%;
+    max-height: 50%
+}
+body {
+    font-family: 'Roboto Condensed';
+    margin:0px;
+    padding:0px;
+}
+.fail-message {
+    display: inline-block;
+    color: red;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: -0.6%;
+}
+.success-message {
+    color: #228B22;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: -0.6%;
+}
+#log-m {
+    width: 100%;
+    height: 100%;
+    background-color: #8faadc;
+    border: 0.1vw solid black;
+}
+.input-t-small {
+    font-size: 1vw;
+    margin: 2.3% 0.8% 1.4% 0;
+    width: 42%;
+    border: 0.05vw solid grey;
+    padding: 2%;
+    border-radius: 0px;
+}
+.input-t {
+    margin-top: 2.5%;
+    width: 93%;
+    border: 0.05vw solid grey;
+    font-size: 1vw;
+    padding: 2.1%;
+    border-radius: 0px;
+}
+.input-b {
+    width: 70%;
+    font-size: 1.5vw;
+    margin: auto;
+    padding: 1%;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    border: 0.1vw solid black;
+    border-radius: 5px;
+    background-color: #adb9ca;
+    font-weight: bold;
+    cursor: pointer;
+}
+.log-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vw;
+    margin: 1.5% auto 0.75% auto;
+}
+#inp-emailNot {
+    width: 5%;
+    height: 5%;
+    margin: 0;
+    margin-left: 1.3%;
+}
+.center {
+    display: block;
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+.left {
+    float: left;
+}
+.small {
+    margin-top: 0.8%;
+    font-size: 1vw;
+}
+.title {
+    font-size: 2.1vw;
+}
+.header {
+    overflow: hidden;
+    background-color: #4472C4;
+    margin-bottom: 3%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+}
+#logo {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0.3%;
+    margin-left: 2%;
+    padding: 0.3%;
+    font-size: 2vw;
+    font-weight: bold;
+    width: 6%;
+}
+.header #logo:hover {
+    background-color: white;
+    color: black;
+}
+.lighter {
+    filter: brightness(120%);
+}
+.darker {
+    filter: brightness(85%);
+}

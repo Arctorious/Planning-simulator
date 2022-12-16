@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin Register</title>
+        <link rel="stylesheet" href="/stylesheets/admin/a_signup.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    </head>
+    <body>
+        <header class="header">
+            <a href="/a_main.html" id="logo">Home</a>
+            <a href="/logout">logout</a>
+        </header>
+        <div class="center" id="log-div">
+            <main id="log-m">
+                <div class="center">
+                    <input class="input-t left" id="inp-email" placeholder="Username">
+                    <input type="password" class="input-t left" id="inp-pass" placeholder="Password">
+                    <div id="con_fail"></div>
+                    <input type="password" class="input-t left" id="inp-pass_con" placeholder="Confirm password">
+                </div>
+                <div id="fail-section">
+                </div>
+                <button class="input-b" id="register-r" type="button">Register Now</button>
+            </main>
+        </div>
+        <script src="/javascripts/admin/a_signup.js"></script>
+    </body>
+</html>

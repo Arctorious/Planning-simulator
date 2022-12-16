@@ -1,0 +1,145 @@
+body {
+    margin:0px;
+    padding:0px;
+	font-family: 'Roboto Condensed';
+}
+#mainblock {
+	border: 0.3vw solid #2F528F;
+	width: 43%;
+	padding-top: 1%;
+	margin: auto;
+	margin-top: 4%;
+	background-color: #8FAADC;
+}
+.left {
+    float: left;
+}
+.main{
+	width: 90%;
+	font-size: 1.5vw;
+	font-weight: bold;
+	color: azure;
+	margin: 2% auto;
+}
+.txt{
+	text-align: left;
+	width: 90%;
+	margin-top: 0;
+	margin-left: 4%;
+	margin-bottom: 4%;
+}
+.inp {
+	font-size: 1vw;
+	padding: 0.8%;
+	border: 0.15vw solid white;
+	margin: 1%;
+}
+.norm{
+	width: 89%;
+}
+.small{
+	width: 41%;
+}
+.button {
+    display: block;
+	width: 45%;
+	padding: 0.8%;
+	border: 0.15vw solid darkblue;
+	border-radius: 8px;
+	font-size: 1.5vw;
+	background-color: #4472C4;
+	color: whitesmoke;
+	margin-left: 1%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+.header {
+    overflow: hidden;
+    background-color: #4472C4;
+    margin-bottom: 3%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+}
+#logo {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0.3%;
+    margin-left: 2%;
+    padding: 0.3%;
+    font-size: 2vw;
+    font-weight: bold;
+    width: 6%;
+}
+#search {
+    float: left;
+    color: black;
+    text-align: left;
+    padding: 0.7%;
+    margin-top: 0.3%;
+    border: 0.05vw solid black;
+    width: 20%;
+    font-size: 1.2vw;
+    font-weight: 700;
+}
+#login {
+    float: right;
+    color: black;
+    text-align: center;
+    margin-top: 0.3%;
+    margin-right: 2%;
+    border: 0.1vw solid black;
+    font-size: 2vw;
+    border-radius: 5px;
+    padding: 0.2%;
+    font-weight: bold;
+    background-color: #C5E0B4;
+    width: 7%;
+}
+.header #logo:hover {
+    background-color: white;
+    color: black;
+}
+.lighter {
+    filter: brightness(120%);
+}
+.darker {
+    filter: brightness(85%);
+}
+button {
+    cursor: pointer;
+}
+.fail-message {
+    color: red;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: -0.6%;
+}
+.success-message {
+    color: #228B22;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: -0.6%;
+}
+#user {
+    float: right;
+    color: lightgray;
+    margin-top: 0.3%;
+    margin-right: 2%;
+    font-size: 2vw;
+    padding: 0.2%;
+    font-weight: bold;
+}
+#placeholder{
+    margin: 0px;
+    width: 0%;
+    padding: 0%;
+}
+.noti_txt{
+    text-align: left;
+    margin: 0 0 4% 4%;
+}
+.tickBox{
+    width: 3%;
+}

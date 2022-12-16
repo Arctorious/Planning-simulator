@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/stylesheets/calendar.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <script src="javascripts/jq.min.js"></script>
+  <title>Your calendar</title>
+</head>
+
+<body onload="ifLogged()">
+  <header class="header">
+    <a href="/home.html" id="logo">Home</a>
+    <input type="text" placeholder="Insert invitation code here" id="search">
+    <div id="placeholder"></div>
+    <a id="user" href="/login.html">
+      <button id="login">Login</button>
+    </a>
+  </header>
+  <div class="main">
+    <div class="top">
+      <div class="check-year">
+        <input class="arrow-left" type="image" src="/images/arrow.png">
+        <p class="year">2022</p>
+        <input class="arrow-right" type="image" src="/images/arrow.png">
+      </div>
+      <div class="right">
+        <div class="check-month">
+          <span class="month" name="month" data-id="1">1</span>
+          <span class="month" name="month" data-id="2">2</span>
+          <span class="month" name="month" data-id="3">3</span>
+          <span class="month" name="month" data-id="4">4</span>
+          <span class="month" name="month" data-id="5">5</span>
+          <span class="month" name="month" data-id="6">6</span>
+          <span class="month" name="month" data-id="7">7</span>
+          <span class="month" name="month" data-id="8">8</span>
+          <span class="month" name="month" data-id="9">9</span>
+          <span class="month" name="month" data-id="10">10</span>
+          <span class="month" name="month" data-id="11">11</span>
+          <span class="month" name="month" data-id="12">12</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal-one" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <a href="#" class="btn-close" id="close1" aria-hidden="true">×</a>
+          <p>Create Your Event</p>
+        </div>
+        <div class="modal-body">
+          <main>
+            <div class="name">
+              <span>Event name:</span>
+              <input id="eventName" type="text" name="name" />
+            </div>
+            <div class="time">
+              <span>Event time: </span>
+              <!--                <input type="number" name="fromHour" class="time1"/>:<input type="number" name="fromMinute" class="time1" /><span class="to">to</span><input name="toHour" type="number"/>:<input name="toMinute" type="number"/>-->
+              <input id="timeStart" type="time" class="time1" style="margin-left: 4%;" name="times">
+              <input id="timeEnd" type="time" class="time12" name="timesTo">
+            </div>
+            <div class="detail">
+              <p>Description:</p>
+              <textarea id="eventdetail" maxlength="1000" name="desc"></textarea>
+            </div>
+          </main>
+        </div>
+        <div class="modal-footer">
+          <button style="cursor: pointer" id="ce_button">create event</button>
+        </div>
+      </div>
+    </div>
+
+    <!--four Modal -->
+    <div class="modal" id="modal-four" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <a href="#" class="btn-close" id="close4" aria-hidden="true">×</a>
+          <p>Your Event</p>
+        </div>
+        <div class="modal-body">
+          <main>
+            <div class="name">
+              <span>Event name:</span>
+              <input disabled type="text" name="name4" />
+            </div>
+            <div class="time">
+              <span>Event time: </span>
+              <!--                <input type="number" name="fromHour" class="time1"/>:<input type="number" name="fromMinute" class="time1" /><span class="to">to</span><input name="toHour" type="number"/>:<input name="toMinute" type="number"/>-->
+              <input type="time" disabled class="time1" style="margin-left: 4%;" name="time4">
+              <input type="time" disabled class="time12" name="time4To">
+            </div>
+            <div class="detail">
+              <p>Description:</p>
+              <textarea disabled maxlength="1000" name="desc4"></textarea>
+            </div>
+          </main>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+
+    <!--编辑 Modal -->
+    <div class="modal" id="modal-edit" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <a href="#" class="btn-close" aria-hidden="true">×</a>
+        </div>
+        <div class="modal-body">
+          <div class="main1">
+            <div class="in_link">
+              <p>Use the link below to invite others</p>
+              <span>Invitation link: </span>
+              <input class="Invlink" type="text" name="link" disabled />
+            </div>
+            <div class="in_code">
+              <p>Alternatively you can use the code below</p>
+              <span>Invitation code: </span>
+              <input class="InvCode" type="text" name="code" disabled />
+            </div>
+            <div class="final_time">
+              <span>Finalise time: </span>
+              <!--                <input type="number" name="fromFinishStart-edit" disabled class="fromFinish" />:<input type="number" disabled name="finishStartEnd-edit" class="fromFinish" /><span>to</span><input type="number" disabled name="toFinishStart-edit" class="toFinish" />:<input type="number" disabled name="toFinishEnd-edit" class="toFinish" />-->
+              <input type="time" class="time3" name="time2">
+              <p>to</p>
+              <input type="time" class="time32" name="time2To">
+            </div>
+            <div class="link_butt">
+              <p class="checkAva">Check availability</p>
+              <button style="cursor: pointer">Finalise event</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal-two" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <a href="#" class="btn-close" id="close-2" aria-hidden="true">×</a>
+        </div>
+        <div class="modal-body">
+          <div class="main1">
+            <div class="in_link">
+              <p>Use the link below to invite others</p>
+              <span>Invitation link: </span>
+              <input class="Invlink" type="text" name="link" disabled />
+            </div>
+            <div class="in_code">
+              <p>Alternatively you can use the code below</p>
+              <span>Invitation code: </span>
+              <input class="InvCode" type="text" name="code" disabled />
+            </div>
+            <div class="final_time">
+              <span>Finalise time: </span>
+              <!--                <input type="number" name="fromFinishStart" class="fromFinish" />:<input type="number" name="fromFinishEnd" class="fromFinish" /><span>to</span><input type="number" name="toFinishStart" class="toFinish" />:<input type="number" name="toFinishEnd" class="toFinish" />-->
+              <input type="time" name="time2" class="time2">
+              <p>to</p>
+              <input type="time" name="time22" class="time2To" style="margin-right: 4%;">
+            </div>
+            <div class="link_butt">
+              <p class="checkAva">Check availability</p>
+              <button id="finish" style="cursor: pointer">Finalise event</button>
+            </div>
+          </div>
+        </div>
+        <!--          <div class="modal-footer">-->
+        <!--            <button style="margin-bottom: 20px;cursor: pointer" id="ce_button">create event</button>-->
+        <!--          </div>-->
+      </div>
+    </div>
+
+
+    <div class="day">
+      <table cellspacing="0" cellpadding="5">
+        <tr>
+          <td>
+            <a class="a" href="#modal-one"><span id="1"></span></a>
+          </td>
+          <td><a class="a" href="#modal-one"><span id="2"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="3"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="4"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="5"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="6"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="7"></span></a></td>
+        </tr>
+        <tr>
+          <td>
+            <a class="a" href="#modal-one"><span id="8"></span></a>
+
+
+          </td>
+          <td><a class="a" href="#modal-one"><span id="9"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="10"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="11"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="12"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="13"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="14"></span></a></td>
+        </tr>
+        <tr>
+          <td><a class="a" href="#modal-one"><span id="15"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="16"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="17"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="18"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="19"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="20"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="21"></span></a></td>
+        </tr>
+        <tr>
+          <td><a class="a" href="#modal-one"><span id="22"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="23"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="24"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="25"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="26"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="27"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="28"></span></a></td>
+        </tr>
+        <tr>
+          <td><a class="a" href="#modal-one"><span id="29"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="30"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="31"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="32"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="33"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="34"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="35"></span></a></td>
+        </tr>
+        <tr>
+          <td><a class="a" href="#modal-one"><span id="36"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="37"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="38"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="39"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="40"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="41"></span></a></td>
+          <td><a class="a" href="#modal-one"><span id="42"></span></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="right-100">
+    <div>
+      <div class="event">
+        <p>Your event:</p>
+
+      </div>
+      <hr>
+    </div>
+    <div style="overflow: auto;">
+      <div class="join-event">
+        <p>Joined Events:</p>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="none" style="display: none">
+    <a href="#modal-two"><span class="a">a</span></a>
+    <a href="#modal-one"><span class="c">c</span></a>
+    <a href="#modal-four"><span class="d">d</span></a>
+  </div>
+  <script src="/javascripts/header.js"></script>
+</body>
+
+</html>
+<script>
+
+  function makeCode() {
+    var result = "";
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 15; i++) {
+      //the line below is from stack overflow:
+      //https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  $(function () {
+
+    let array = [];
+    let id = 1;
+    $.ajax({
+      url: "/users/getAllEvent",
+      type: "post",
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        if (data) {
+          array = data
+        }
+      }
+
+    })
+
+    var myDate = new Date;
+    var year1 = myDate.getFullYear(); //获取当前年
+    var mon1 = myDate.getMonth() + 1; //获取当前月
+    var date1 = myDate.getDate(); //获取当前日
+    $.ajax({
+      url: "/users/getEventByToday",
+      type: "post",
+      data: { year1, mon1, date1 },
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        if (data) {
+
+          for (let i = 0; i < data.length; i++) {
+            $(".event").append("<a href=''>" + data[i]['Event_name'] + "</a>  <br>")
+          }
+
+        }
+      }
+
+    })
+
+
+    $.ajax({
+      url: "/users/getJoinInfo",
+      type: "post",
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        if (data) {
+          for (let i = 0; i < data.length; i++) {
+            $(".join-event").append("<a href=''>" + data[i]['Event_name'] + "</a> <br>")
+          }
+
+        }
+      }
+
+    })
+
+
+    console.log(array);
+
+    let eventDay = 0;
+    let allDays = 0
+    let now = new Date()
+    let isHave = [];
+    let month = new Date().getMonth() + 1;
+    calendar()
+    let year = $('.year').text();
+    let ddd = new Date(month + "/1/" + year).getDay();
+
+    for (let i = 0; i < array.length; i++) {
+
+      if (array[i]["Year_of_event"] == year) {
+        if (month == array[i]["Month_of_event"]) {
+          if (ddd == 0) {
+            isHave.push((Number(array[i]["Day_of_event"]) + 6))
+            $("#" + (Number(array[i]["Day_of_event"]) + 6)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+          } else {
+            isHave.push((Number(array[i]["Day_of_event"]) + Number(ddd) - 1))
+            $("#" + (Number(array[i]["Day_of_event"]) + Number(ddd) - 1)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+          }
+        }
+      }
+    }
+
+
+    $(".arrow-left").click(function () {
+      year = Number(year) - 1;
+      $('.year').text(year)
+      //添加日历上的事件
+      let mon = $(".month-hover").text();// 日历的月份
+
+      let firstDay = new Date(mon + "/1/" + year).getDay();
+
+      let days = getDays(year, mon);
+
+
+      //输出之前需要清空之前初始化的天数
+      for (let i = 1; i <= 42; i++) {
+        $("#" + i).text("")
+        $("#" + i).parent().next().remove()
+      }
+
+      //  输出天数
+      let start = 0;
+      for (let i = 1; i <= days; i++) {
+        if (firstDay == 0) {
+          start = 6
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().addClass("td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+          $("#" + Number(start + i)).parent().parent().css("display", "flex")
+        } else {
+          start = firstDay - 1
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().addClass("td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+          $("#" + Number(start + i)).parent().parent().css("display", "flex")
+        }
+      }
+
+
+      let ddd = firstDay;
+      for (let i = 0; i < array.length; i++) {
+
+        if (array[i]["Year_of_event"] == year) {
+          if (mon == array[i]["Month_of_event"]) {
+            if (ddd == 0) {
+              isHave.push((Number(array[i]["Day_of_event"]) + 6))
+              $("#" + (Number(array[i]["Day_of_event"]) + 6)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            } else {
+              isHave.push((Number(array[i]["Day_of_event"]) + Number(ddd) - 1))
+              $("#" + (Number(array[i]["Day_of_event"]) + Number(ddd) - 1)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            }
+          }
+        }
+      }
+
+    })
+
+    $(".arrow-right").click(function () {
+      year = Number(year) + 1;
+      $('.year').text(year)
+      //添加日历上的事件
+      let mon = $(".month-hover").text();// 日历的月份
+
+      let firstDay = new Date(mon + "/1/" + year).getDay();
+
+      let days = getDays(year, mon);
+
+
+      //输出之前需要清空之前初始化的天数
+      for (let i = 1; i <= 42; i++) {
+        $("#" + i).text("")
+        $("#" + i).parent().next().remove()
+      }
+
+      //  输出天数
+      let start = 0;
+      for (let i = 1; i <= days; i++) {
+        if (firstDay == 0) {
+          start = 6
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().attr("name", "td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+        } else {
+          start = firstDay - 1
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().attr("name", "td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+        }
+      }
+
+
+      let ddd = firstDay;
+      for (let i = 0; i < array.length; i++) {
+
+        if (array[i]["Year_of_event"] == year) {
+          if (mon == array[i]["Month_of_event"]) {
+            if (ddd == 0) {
+              isHave.push((Number(array[i]["Day_of_event"]) + 6))
+              $("#" + (Number(array[i]["Day_of_event"]) + 6)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            } else {
+              isHave.push((Number(array[i]["Day_of_event"]) + Number(ddd) - 1))
+              $("#" + (Number(array[i]["Day_of_event"]) + Number(ddd) - 1)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            }
+          }
+        }
+      }
+
+
+    })
+
+    $("span[name='month']").click(function () {
+
+
+      // 清除日历的事件
+      for (let i = 0; i < isHave.length; i++) {
+        $("#" + (isHave[i])).parent().next().remove()
+      }
+
+
+
+      //样式改变
+      $(".month-hover").removeClass("month-hover")
+      $(this).addClass("month-hover")
+      //获取点击的日期
+      month = $(this).attr('data-id');
+
+
+
+      let year = $('.year').text()// 日历的年份
+      //添加日历上的事件
+      let mon = $(".month-hover").text();// 日历的月份
+
+      let ddd = new Date(month + "/1/" + year).getDay();
+      for (let i = 0; i < array.length; i++) {
+
+        if (array[i]["Year_of_event"] == year) {
+          if (mon == array[i]["Month_of_event"]) {
+            if (ddd == 0) {
+              isHave.push((Number(array[i]["Day_of_event"]) + 6))
+              $("#" + (Number(array[i]["Day_of_event"]) + 6)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            } else {
+              isHave.push((Number(array[i]["Day_of_event"]) + Number(ddd) - 1))
+              $("#" + (Number(array[i]["Day_of_event"]) + Number(ddd) - 1)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            }
+          }
+        }
+      }
+
+
+
+
+
+
+
+      let days = getDays(year, month);
+      // 获取当前的年份的某个具体月份的第一天是周几
+      let firstDay = new Date(month + "/1/" + year).getDay();
+      // console.log(firstDay)
+      //输出之前需要清空之前初始化的天数
+      for (let i = 1; i <= 42; i++) {
+        $("#" + i).text("")
+      }
+      //  输出天数
+      let start = 0;
+      for (let i = 1; i <= days; i++) {
+        if (firstDay == 0) {
+          start = 6
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().attr("name", "td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+        } else {
+          start = firstDay - 1
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().attr("name", "td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+        }
+      }
+
+
+      $("span[name='ca-event']").click(function (e) {
+        alert(11)
+        e.stopPropagation()
+        e.preventDefault();
+
+        $(".a").trigger("click");
+
+        $("input[name='link']").val("http://localhost:3000/detail/" + $(this).attr("data-id"))
+        $("input[name='code']").val($(this).attr("data-id"))
+
+
+      })
+
+
+    })
+    // 获取日期数
+    function getDays(year, month) {
+      let days = 0;
+      switch (Number(month)) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+          days = 31
+          break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          days = 30
+          break;
+        default:
+          //判断闰年 得到二月份的天数
+          if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+            days = 29
+          } else {
+            days = 28
+          }
+          break;
+      }
+      return days;
+    }
+    //初始化日历
+    function calendar() {
+      let m = new Date().getMonth()
+      $(".check-month span:eq(" + m + ")").addClass("month-hover")
+      let year = now.getFullYear()
+      $('.year').text(year)
+      //得到每个月多少天
+      allDays = getDays(year, month)
+      now.setDate(1) //将时间设置成本月的一号
+      let firstDay = now.getDay()//0 是周日
+      // 0   1   2   3   4    5   6
+      //周日 周一 周二 周三 周四 周五 周六
+      //  输出天数
+      let start = 0;
+      for (let i = 1; i <= allDays; i++) {
+        if (firstDay == 0) {
+          start = 6
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().attr("name", "td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+        } else {
+          start = firstDay - 1
+          $("#" + Number(start + i)).text(i)
+          $("#" + Number(start + i)).parent().parent().attr("name", "td")
+          $("#" + Number(start + i)).parent().parent().css("cursor", "pointer")
+        }
+      }
+    }
+    $(".a").click(function () {
+      eventDay = $(this).children().text()
+    });
+
+    $("#ce_button").click(function () {
+      if ($("input[name='name']").val() == ""
+        || $("input[name='desc']").val() == "" || $("input[name='times']").val() == "" || $("input[name='timesTo']").val() == "") {
+        alert("Parameter cannot be empty")
+        return false;
+      }
+
+      let temp = {
+        code: makeCode(), EventDecription: $("textarea[name='desc']").val(), Yearoftheevent: year, Monthoftheevent: month,
+        Dayoftheevent: eventDay, time: $("input[name='times']").val(), timeTo: $("input[name='timesTo']").val(), Finalisationstatus: 0,
+        HostId: "", EventName: $("input[name='name']").val(), Availablehour: "", Availableminute: "", Availiableuntilhour: '', Availableuntilminute: ""
+      }
+      let Event_id = 0
+      $.ajax({
+        url: "/users/addevent",
+        type: "post",
+        async: false,
+        data: {
+          EventName: temp["EventName"],
+          code: temp["code"],
+          EventDecription: temp["EventDecription"],
+          Yearoftheevent: temp["Yearoftheevent"],
+          Monthoftheevent: temp["Monthoftheevent"],
+          Dayoftheevent: temp["Dayoftheevent"],
+          time: temp["time"],
+          timeTo: temp["timeTo"]
+
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          console.log(data.code != "");
+          if (data.code != "") {
+            $("input[name='link']").val(window.location.host + data.url)
+            $("input[name='code']").val(data.code)
+            $("input[name='time2']").val(data.form)
+            $("input[name='time22']").val(data.formTo)
+            Event_id = data.EventId
+            array = data.data
+            $("#close1").trigger("click");
+            $(".a").trigger("click");
+          }
+        }
+
+      })
+
+      year = $('.year').text()// 日历的年份
+      //添加日历上的事件
+      let mon = $(".month-hover").text();// 日历的月份
+
+      for (let i = 1; i <= 42; i++) {
+        $("#" + i).parent().next().remove()
+      }
+      let ddd = new Date(month + "/1/" + year).getDay();
+      for (let i = 0; i < array.length; i++) {
+        if (array[i]["Year_of_event"] == year) {
+          if (mon == array[i]["Month_of_event"]) {
+            if (ddd == 0) {
+              isHave.push((Number(array[i]["Day_of_event"]) + 6))
+              $("#" + (Number(array[i]["Day_of_event"]) + 6)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            } else {
+              isHave.push((Number(array[i]["Day_of_event"]) + Number(ddd) - 1))
+              $("#" + (Number(array[i]["Day_of_event"]) + Number(ddd) - 1)).parent().after('<span name="ca-event" data-id="' + array[i]["Event_Id"] + '" class="ca-event">' + array[i]["Event_name"] + '</span>')
+            }
+          }
+        }
+      }
+
+
+
+
+
+    })
+    $("span[name='ca-event']").click(function (e) {
+      e.stopPropagation()
+      e.preventDefault();
+      $(".a").trigger("click");
+
+      $.ajax({
+        url: "/users/getEvent",
+        type: "post",
+        data: {
+          EventId: $(this).attr("data-id")
+        },
+        dataType: "json",
+        success: function (data) {
+          if (data[0]["Finalisation_status"] == 0) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(".a").trigger("click");
+
+            $("input[name='link']").val(window.location.host + "/invite.html?code=" + data[0]["Code"])
+            $("input[name='code']").val(data[0]["Code"])
+            $(".time3").val(data[0]["Starting_time_of_event"])
+            $(".time32").val(data[0]["Ending_time_of_event"])
+          } else {
+            e.stopPropagation();
+            e.preventDefault();
+            $(".d").trigger("click");
+            $("[name='name4']").val(data[0]["Event_name"])
+            $("[name='time4']").val(data[0]["Starting_time_of_event"])
+            $("[name='time4To']").val(data[0]["Ending_time_of_event"])
+            $("[name='desc4']").val(data[0]["Event_decription"])
+          }
+        }
+
+      })
+
+    })
+
+    $("[name='td']").click(function (e) {
+      if ($(e.target).is('span[name="ca-event"]')) {
+
+        $("span[name='ca-event']").click(function (e) {
+
+          $.ajax({
+            url: "/users/getEvent",
+            type: "post",
+            data: {
+              EventId: $(this).attr("data-id")
+
+            },
+            dataType: "json",
+            success: function (data) {
+              if (data[0]["Finalisation_status"] == 0) {
+                e.stopPropagation();
+                e.preventDefault();
+                $(".d").trigger("click");
+                $("[name='name4']").val(data[0]["Event_name"])
+                $("[name='time4']").val(data[0]["Starting_time_of_event"])
+                $("[name='time4To']").val(data[0]["Ending_time_of_event"])
+                $("[name='desc4']").val(data[0]["Event_decription"])
+
+              } else {
+
+                e.stopPropagation();
+                e.preventDefault();
+                $(".a").trigger("click");
+
+                $("input[name='link']").val(window.location.host + "/invite.html?code=" + data[0]["Code"])
+                $("input[name='code']").val(data[0]["Code"])
+                $(".time3").val(data[0]["Starting_time_of_event"])
+                $(".time32").val(data[0]["Ending_time_of_event"])
+              }
+            }
+
+          })
+
+        })
+
+      }
+      eventDay = $(this).children(":first").children().text()
+      $(".c").trigger("click");
+    })
+
+
+    $("#finish").click(function () {
+      let time2 = $(".time2").val()
+      let time2To = $(".time2To").val()
+      let code = $("input[name='code']").val()
+
+
+      $.ajax({
+        url: "/users/finishEvent",
+        type: "post",
+        data: {
+          time2,
+          time2To,
+          code
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          if (data.code == "1") {
+            $("#close-2").trigger("click");
+            alert(data.msg);
+            $.ajax({
+              url: "/users/sendemailtojoiner",
+              type: "post",
+              data: {
+                code
+              },
+              dataType: "json",
+            })
+          }
+        }
+
+      })
+
+      var myDate = new Date;
+      var year1 = myDate.getFullYear(); //获取当前年
+      var mon1 = myDate.getMonth() + 1; //获取当前月
+      var date1 = myDate.getDate(); //获取当前日
+      $.ajax({
+        url: "/users/getEventByToday",
+        type: "post",
+        data: { year1, mon1, date1 },
+        dataType: "json",
+        async: false,
+        success: function (data) {
+          if (data) {
+            $(".event").children().remove()
+            $(".event").append("<p>Your event:</p>")
+            for (let i = 0; i < data.length; i++) {
+              $(".event").append("<a href=''>" + data[i]['Event_name'] + "</a> <br> ")
+            }
+
+          }
+        }
+
+      })
+
+
+
+
+    })
+
+
+
+
+  })
+
+
+</script>

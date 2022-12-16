@@ -1,0 +1,44 @@
+body {
+    font-family: 'Roboto Condensed';
+    margin:0px;
+    padding:0px;
+}
+.header {
+    overflow: hidden;
+    background-color: #4472C4;
+    margin-bottom: 3%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+}
+#logo {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0.3%;
+    margin-left: 2%;
+    padding: 0.3%;
+    font-size: 2vw;
+    font-weight: bold;
+    width: 6%;
+}
+.header #logo:hover {
+    background-color: white;
+    color: black;
+}
+table {
+    width: 80%;
+    font-size: 1vw;
+    border: 0.08vw solid black;
+}
+button {
+    float: right;
+    font-size: 1vw;
+}
+tr{
+    text-align: left;
+    border: 0.08vw solid black;
+}
+td, th{
+    border: 0.08vw solid black;
+}
