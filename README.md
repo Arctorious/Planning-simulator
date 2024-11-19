@@ -1,8 +1,6 @@
 # Planning-simulator
 A website for social media event planning
 
-Unfortunately, this website is unfinished and has seval bugs and missing functionalities. 
-
 Current implemented functionality:
 User -
  -  User registeration and login
